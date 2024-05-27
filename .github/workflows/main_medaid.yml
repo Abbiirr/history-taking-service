@@ -59,5 +59,6 @@ jobs:
         with:
           app-name: 'medaid'
           slot-name: 'Production'
-          package: '*-SNAPSHOT.jar'
+          package: $(ls -t build/libs/*-SNAPSHOT.jar | head -n1)
+      
           
