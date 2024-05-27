@@ -1,0 +1,48 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: service-template
+  profiles:
+    active: dev
+  data:
+    mongodb:
+      uri: mongodb+srv://admin:admin@cluster0.jcoztbt.mongodb.net/test
+
+
+
+springdoc:
+  show-actuator: true
+  swagger-ui:
+    path: /swagger-ui
+  api-docs:
+    path: /api-docs
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+  info:
+    env:
+      enabled: true
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+  zipkin:
+    tracing:
+      endpoint: http://localhost:9411/api/v2/spans
+  tracing:
+    sampling:
+      probability: 1
+
+logging:
+  level:
+    root: debug
