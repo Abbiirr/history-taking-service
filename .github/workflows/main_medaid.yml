@@ -59,6 +59,5 @@ jobs:
         with:
           app-name: 'medaid'
           slot-name: 'Production'
-          package: $(ls -t build/libs/*-SNAPSHOT.jar | head -n1)
-      
+          package: 'history-taking-service-0.0.1-SNAPSHOT.jar'
           
