@@ -43,7 +43,8 @@ jobs:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
-          name: history-taking-service-0.0.1-SNAPSHOT.jar
+          name: history-taking-service
+          path: 'build/libs/history-taking-service-0.0.1-SNAPSHOT.jar' # Updated path to the JAR file
       
       - name: Login to Azure
         uses: azure/login@v1
