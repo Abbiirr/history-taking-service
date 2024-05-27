@@ -40,6 +40,14 @@ jobs:
       id-token: write #This is required for requesting the JWT
   
     steps:
+      - name: Delete previous JAR files
+        run: |
+          # Navigate to the directory containing the JAR files
+          cd ${GITHUB_WORKSPACE}/build/libs
+
+          # Delete all JAR files except the most recent one
+          ls -t | tail -n +2 | xargs rm -f
+
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
