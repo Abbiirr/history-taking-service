@@ -28,7 +28,7 @@ public class QuestionService {
         updatePatientHistory(question, answer);
         QANode nextNode = getNextNode();
         nodesTraversed.add(nextNode.getName());
-        GraphQuestion nextQuestion = nextNode.getConnectedTo();
+        GraphQuestion nextQuestion = graphQuestionRepository.findQuestionByNodeName(nextNode.getName()).get(0);
         QuestionResponse nextQuestionResponse = mapToQuestionResponse(nextQuestion);
         return nextQuestionResponse;
     }
@@ -43,6 +43,7 @@ public class QuestionService {
         nodesTraversed.add(initialNode.getName());
 
         QANode nextNode = getNextNode();
+        nodesTraversed.add(nextNode.getName());
         GraphQuestion nextQuestion = graphQuestionRepository.findQuestionByNodeName(nextNode.getName()).get(0);
         QuestionResponse nextQuestionResponse = mapToQuestionResponse(nextQuestion);
 
