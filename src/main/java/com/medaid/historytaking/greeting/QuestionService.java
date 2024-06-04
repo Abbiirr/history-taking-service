@@ -50,6 +50,12 @@ public class QuestionService {
         return nextQuestionResponse;
     }
 
+    public HashMap<String, String> getPatientHistory() {
+        HashMap<String, String> history = new HashMap<>(patientQuestionAnswerMap);
+        patientQuestionAnswerMap.clear();
+        return history;
+    }
+
     private QuestionResponse mapToQuestionResponse(GraphQuestion graphQuestion) {
         return new QuestionResponse().builder()
                 .text(graphQuestion.getText())

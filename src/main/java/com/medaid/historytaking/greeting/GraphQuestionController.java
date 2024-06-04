@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
 import java.util.List;
 
 @RestController
@@ -37,4 +38,10 @@ public class GraphQuestionController {
     public QuestionResponse getNextQuestion(@RequestBody NextQuestionRequest nextQuestionRequest) {
         return questionService.getNextQuestion(nextQuestionRequest.getQuestion(), nextQuestionRequest.getAnswer());
     }
+
+    @GetMapping("/patient-history")
+    public HashMap<String, String> getPatientHistory() {
+        return questionService.getPatientHistory();
+    }
+
 }
