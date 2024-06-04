@@ -12,13 +12,11 @@ import java.util.List;
 
 @Repository
 public interface QANodeRepository extends Neo4jRepository<QANode, String> {
-    @Query("MATCH (original:Node)\n" +
-            "WHERE original.name IN $names\n" +
-            "MATCH (original)-[r]-()-[r2]-(connected)\n" +
-            "WHERE NOT connected.name = original.name\n" +
-            "RETURN connected.name AS connectedNode, toFloat(r.weight) AS edgeWeight\n" +
+    @Query("MATCH (original:Node)-[r:CONNECTED_TO]->(connected)\n" +
+            "WHERE original.name IN $names  // Replace 'node2' and 'node3' with the actual names of the nodes in your list\n" +
+            "RETURN original.name AS originalNode, connected.name AS connectedNode, toFloat(r.weight) AS edgeWeight\n" +
             "ORDER BY edgeWeight ASC\n" +
-            "LIMIT 25\n")
+            "LIMIT 208\n\n")
     List<ConnectedNodeWithWeight> findNodesWithLeastWeightedEdge(@Param("names") List<String> names);
 
 
